@@ -11,12 +11,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
-      - name: Run PHP to generate HTML
+      - name: Generate static HTML
         run: php index.php > index.html
-      - name: Commit generated files
+      - name: Commit and push generated files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add index.html
-          git commit -m "Generate static HTML"
+          git commit -m "Generate static HTML" || echo "No changes to commit"
           git push
